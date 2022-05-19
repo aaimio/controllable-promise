@@ -1,0 +1,24 @@
+{
+  "name": "controllable-promise",
+  "version": "1.0.0",
+  "description": "Manually invoke JavaScript promises using proxies",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aaimio/controllable-promise.git"
+  },
+  "author": "Aaron Imming <aaim@protonmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aaimio/controllable-promise/issues"
+  },
+  "homepage": "https://github.com/aaimio/controllable-promise#readme",
+  "devDependencies": {
+    "prettier": "^2.6.2",
+    "typescript": "^4.6.4"
+  }
+}
