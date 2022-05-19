@@ -1,8 +1,8 @@
 export class ControllablePromise<T> extends Promise<T> {
   static noop = () => {};
-  
-  public resolve: ((value: T | PromiseLike<T>) => void) | (() => void) = ControllablePromise.noop;
-  public reject: ((reason?: any) => void) | (() => void) = ControllablePromise.noop;
+
+  public resolve: (value?: T | PromiseLike<T>) => void = ControllablePromise.noop;
+  public reject: (reason?: any) => void = ControllablePromise.noop;
 
   constructor() {
     super(ControllablePromise.noop);
@@ -11,8 +11,8 @@ export class ControllablePromise<T> extends Promise<T> {
     let manualRejectFn: typeof this.reject = ControllablePromise.noop;
 
     const promise = new Promise<T>((res, rej) => {
-      manualResolveFn = res;
-      manualRejectFn = rej;
+      manualResolveFn = res as ControllablePromise<T>["resolve"];
+      manualRejectFn = rej as ControllablePromise<T>["reject"];
     });
 
     return new Proxy(promise as typeof this, {
