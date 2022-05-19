@@ -1,7 +1,7 @@
 {
   "name": "controllable-promise",
-  "version": "1.0.2",
-  "description": "Manually invoke JavaScript promises using proxies",
+  "version": "1.1.1",
+  "description": "Control when a JavaScript promise resolves or rejects.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {

@@ -1,18 +1,22 @@
-export class ControllablePromise<T> extends Promise<T> {
+export default class ControllablePromise<T> extends Promise<T> {
   static noop = () => {};
 
   public resolve: (value?: T | PromiseLike<T>) => void = ControllablePromise.noop;
   public reject: (reason?: any) => void = ControllablePromise.noop;
 
-  constructor() {
+  constructor(executor?: (resolve: typeof ControllablePromise.resolve, reject: typeof ControllablePromise.reject) => void) {
     super(ControllablePromise.noop);
 
-    let manualResolveFn: typeof this.resolve = ControllablePromise.noop;
-    let manualRejectFn: typeof this.reject = ControllablePromise.noop;
+    let manualResolveFn: typeof ControllablePromise.resolve = Promise.resolve;
+    let manualRejectFn: typeof ControllablePromise.reject = Promise.reject;
 
     const promise = new Promise<T>((res, rej) => {
-      manualResolveFn = res as ControllablePromise<T>["resolve"];
-      manualRejectFn = rej as ControllablePromise<T>["reject"];
+      manualResolveFn = res as any;
+      manualRejectFn = rej as any;
+
+      if (typeof executor === "function") {
+        executor(manualResolveFn, manualRejectFn);
+      }
     });
 
     return new Proxy(promise as typeof this, {

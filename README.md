@@ -1,6 +1,6 @@
-# Controllable promise
+# Controllable Promise
 
-Manually invoke JavaScript promises using proxies
+Control when a JavaScript promise resolves or rejects.
 
 ## Getting started
 
@@ -8,10 +8,10 @@ Manually invoke JavaScript promises using proxies
 npm i controllable-promise
 ```
 
-In your code use the promise as you would normally:
+Create the promise and manually invoke the `resolve` function:
 
 ```TS
-const setupPromise = new ControllablePromise<void>();
+const setupPromise = new ControllablePromise<void>()
 
 setupPromise.then(() => {
     executeSomeAfterSetupLogic();
@@ -22,14 +22,16 @@ callSomeSetupLogic();
 setupPromise.resolve();
 ```
 
-Or with `await`:
+Or use the promise as you would normally:
 
 ```TS
-const setupPromise = new ControllablePromise<void>();
+const setupPromise = new ControllablePromise<void>(resolve => {
+    callSomeSetupLogic();
 
-callSomeSetupLogic();
-
-setupPromise.resolve();
+    // Below is optional, you can still manually invoke the `resolve`
+    // later on using `setupPromise.resolve()`
+    resolve(); 
+})
 
 await setupPromise;
 
