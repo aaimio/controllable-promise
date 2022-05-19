@@ -11,6 +11,8 @@ npm i controllable-promise
 Create the promise and manually invoke the `resolve` function:
 
 ```TS
+import ControllablePromise from 'controllable-promise';
+
 const setupPromise = new ControllablePromise<void>()
 
 setupPromise.then(() => {
@@ -25,12 +27,14 @@ setupPromise.resolve();
 Or use the promise as you would normally:
 
 ```TS
+import ControllablePromise from 'controllable-promise';
+
 const setupPromise = new ControllablePromise<void>(resolve => {
     callSomeSetupLogic();
 
     // Below is optional, you can still manually invoke the `resolve`
     // later on using `setupPromise.resolve()`
-    resolve(); 
+    resolve();
 })
 
 await setupPromise;
