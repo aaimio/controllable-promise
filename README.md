@@ -13,7 +13,7 @@ Create the promise and manually invoke the `resolve` function:
 ```TS
 import ControllablePromise from 'controllable-promise';
 
-const setupPromise = new ControllablePromise<void>()
+const setupPromise = new ControllablePromise()
 
 setupPromise.then(() => {
     executeSomeAfterSetupLogic();
@@ -29,11 +29,11 @@ Or use the promise as you would normally:
 ```TS
 import ControllablePromise from 'controllable-promise';
 
-const setupPromise = new ControllablePromise<void>(resolve => {
+const setupPromise = new ControllablePromise(resolve => {
     callSomeSetupLogic();
 
     // Below is optional, you can still manually invoke the `resolve`
-    // later on using `setupPromise.resolve()`
+    // later using `setupPromise.resolve()`
     resolve();
 })
 
