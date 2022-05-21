@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/aaimio/controllable-promise/branch/master/graph/badge.svg?token=3ACCR1SWXX)](https://codecov.io/gh/aaimio/controllable-promise)
+
 # Controllable Promise
 
 Control when a JavaScript promise resolves or rejects.
